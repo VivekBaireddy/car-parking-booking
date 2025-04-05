@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="static\images\favicon.png" type="image/x-icon">
+
+  <title>Paspark</title>
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="static\css1\bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- nice selecy -->
+  <link rel="stylesheet" href="static\css1\nice-select.min.css">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link href="static\css1\font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="static\css1\style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="static\css1\responsive.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+  <div class="hero_area">
+    <div class="bg-box">
+      <img src="static\images\slider-bg.jpg" alt="">
+    </div>
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <span>
+              Paspark
+            </span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ">
+              <li class="nav-item  ">
+                <a class="nav-link" href="/index">Home </a>
+              </li>
+              <li class="nav-item "  >
+                <a class="nav-link" href="{{ url_for('index') }}#about"> About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/history">Your Bookings</a>
+              </li>
+              {% if session['userid'] %}
+              <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="/">Login</a>
+              </li>
+              {% endif %}
+              
+            </ul>
+            <!-- <form class="form-inline">
+              <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <a scr="static\images\usersiconnew.png"></a>
+              </button>
+            </form> -->
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+
+    <section class="ftco-section" style="background-color: white;">
+		<div class="container" style="padding: 7%;">
+			<div class="row justify-content-center" style="text-align: center;">
+				<div class="detail-box col-md-9 mx-auto px-0">
+                    <h2 style="margin-top: 8%;">
+                      BOOK PARKING SPACE
+                    </h2>
+                  </div>
+			</div>
+      <div style="display: block;">
+      <div class="container" style="max-width: 1200px;box-shadow: 6px 8px 25px grey;    padding: 11%" >
+        <form method="post" class="register-form" id="login-form" action="/book" style="margin-left: 13%;">
+          <h3 style="margin-left: 19%">Enter YOUR DETAILS</h3>
+          <div style="margin-left: 19%;margin-bottom: 6%;font-size: smaller;color: red;"><b style="margin-left: 6%;">Note: We charge 1.2 euros per hr </b></div>
+          
+          <div style="    MARGIN-LEFT: 12%;">
+          <div style="display: flex;">
+          <div class="form-group" style="width: 128%;">
+            <label for="your_pass"> Parking Name:</label>
+            <input style="margin-left: 0.5%;text-align: center;width: 48.7%;" type="text" name="pa_name" id="pa_name"  value="{{data['pa_name']}}" readonly  />
+        </div>
+      </div>
+      <div style="display: flex;">
+        <div class="form-group" style="width: 128%;">
+            <label for="your_name">Area Name: </label>
+            <input style="margin-left: 4%;width: 48.7%;text-align: center;" type="text" name="pa_area" id="pa_area" placeholder="Area" value="{{data['pa_area']}}" readonly/>
+        </div>
+      </div>
+        
+          <div style="display: flex;">
+          <div class="form-group" style="width: 128%;">
+              <label for="your_pass">Address: </label>
+              <input style="margin-left: 7.5%;width: 48.7%;text-align: center;" type="text" name="pa_address" id="pa_address" placeholder="Address" value="{{data['pa_address']}}" readonly/>
+          </div>
+        </div>
+        <div style="display: flex;">
+        <div class="form-group" style="width: 128%;">
+          <label for="slot">Slot: </label>
+          <select name="slot" id="slot" style="margin-left: 13%; height: 89%;width: 48.7%;text-align: center;" required >
+            <option value=""  selected >Choose Slot..</option>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+          </select>
+      </div></div>
+
+        <div style="display: flex;">
+        <div class="form-group" style="width: 128%;margin-left: 0%;">
+          <label for="your_pass"> Date: <i class="zmdi zmdi-lock"></i></label>
+          <input type="date" name="date" id="date" placeholder="date" style="width: 49%;text-align: center;margin-left: 12%;" required />
+      </div></div>
+
+      <div class="form-group" >
+        <label for="your_pass">Time From:<i class="zmdi zmdi-lock"></i></label>
+        <input type="time" name="time_from" id="time_from" placeholder="Time from" style="width: 49%;margin-left: 4.5%;text-align: center;" required/>
+    </div>
+
+    <div class="form-group" >
+      <label for="your_pass">Time To:<i class="zmdi zmdi-lock"></i></label>
+      <input type="time" name="time_to" id="time_to" placeholder="Time to" style="margin-left: 8%;width: 49%;text-align: center;" required />
+  </div></div>    
+    
+          
+          <div class="form-group form-button">
+            <button type="submit" class="" style="height: 36px;margin-top: -3%;background-color: #ff6f3c;width: 107px;border: none;margin-left: 37%; color: white; border-radius: 14px;" >                                      
+              Book
+
+          </button>
+          </div>
+      </form>
+      </div>
+    </div>
+			
+		</div>
+	</section>
+
+
+
+   <!-- info section -->
+   <section class="info_section ">
+
+    <div class="container">
+      <div class="info_top ">
+        <div class="row ">
+          
+          <div class="col-md-6 col-lg-3 info_col ">
+            <div class="info_detail">
+              <h4>
+                About Us
+              </h4>
+              <p>
+                We make parking easier, faster, and more affordable across Ireland. Our platform connects drivers with secure parking spaces, ensuring a stress-free experience whether you’re commuting, shopping, or traveling.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 info_col " style="margin-left: 14%;">
+            <div class="info_detail">
+              <h4>
+                Online Booking
+              </h4>
+              <p>
+                With our easy-to-use online system, you can reserve your parking spot in advance—no more circling the block looking for a space! Enjoy a smooth and convenient booking process at your fingertips.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 info_col" style="    margin-left: 11%">
+            <h4>
+              Contact us
+            </h4>
+            <p>
+              Feel free to reach out!
+            </p>
+            <div class="contact_nav">
+              <a href="">
+                
+                <span>
+                  📍 Location: Ireland
+                </span>
+              </a>
+              
+              <a href="">
+               
+                <span>
+                  📧 Email: X23324902@student.ncirl.ie
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end info_section -->
+ 
+
+  <!-- jQery -->
+  <script src="static\js\jquery-3.4.1.min.js"></script>
+  <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
+  </script>
+  <!-- nice select -->
+  <script src="static\js\jquery.nice-select.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="static\js\bootstrap.js"></script>
+  <!-- owl slider -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- custom js -->
+  <script src="static\js\custom.js"></script>
+
+</body>
+
+</html>
